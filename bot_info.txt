@@ -1,0 +1,8 @@
+Questo file .py è il sorgente per il bot telegram del laboratorio.
+
+Non va assolutamente toccato, solo per effettuare operazioni di manutenzione.
+
+Per effettuare qualche modofica al bot, disattivare il servizio TGbot, poi moificare il file tg_bot.py e alla fine 
+riattivare il servizio
+
+
