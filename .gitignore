@@ -1,5 +1,7 @@
 log/
 
+test_log/
+
 .vscode/
 
 __pycache__/
