@@ -5,3 +5,7 @@ test_log/
 .vscode/
 
 __pycache__/
+
+tg_bot_bck.py
+
+.env
