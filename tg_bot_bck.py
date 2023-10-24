@@ -19,9 +19,13 @@ import telebot
 from telebot import types
 import datetime
 from functools import wraps
+from logs import log_file, LOG_DIR
+from dotenv import load_dotenv
+import os
 
-
-bot = telebot.TeleBot('6695589097:AAG172JYhyo11RI-FKRb2fwRWQ2sSP342L4')
+load_dotenv()
+TOKEN = os.environ.get("BOT_TOKEN")
+bot = telebot.TeleBot(TOKEN)
 
 print("Sto in ascolto...")
 
