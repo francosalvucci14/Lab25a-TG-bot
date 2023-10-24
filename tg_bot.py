@@ -40,7 +40,6 @@ def private_access():
 
 
 @bot.message_handler(commands=['start'])
-@private_access()
 def startMSG(message):
     log_obj = {
         'chat_id': message.chat.id,
