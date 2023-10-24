@@ -25,12 +25,12 @@ def test_log():
     with open(file_path, 'r') as f:
         data = json.load(f)
         
-        # for d1 in data:
-        #     is_logged = False
-        #     for d2 in documents:
-        #         if d1['id'] == d2['id'] and d1['message'] == d2['message'] and d1['user'] == d2['user'] and d1['command'] == d2['command']:
-        #             is_logged = True
-        #     assert is_logged
+         for d1 in data:
+             is_logged = False
+             for d2 in documents:
+                 if d1['id'] == d2['id'] and d1['message'] == d2['message'] and d1['user'] == d2['user'] and d1['command'] == d2['command']:
+                     is_logged = True
+             assert is_logged
     
     print('TEST LOG PASSED.')
                 
