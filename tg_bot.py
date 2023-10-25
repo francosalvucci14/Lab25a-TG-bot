@@ -114,7 +114,7 @@ def answerOnGroup(callback):
                              'Comunicazione avvenuta')
         if callback.data == "answer_close":
             bot.send_message(-1001921431467,
-                             'Il laboratorio 25a è chiuso, alla prossima!')
+                             'Il laboratorio 25a è chiuso')
             bot.send_message(callback.message.chat.id,
                              'Comunicazione avvenuta')
         if callback.data == "answer_coffe":
