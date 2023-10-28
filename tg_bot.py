@@ -59,27 +59,27 @@ def cand(msg):
 
 
 @bot.callback_query_handler(func=lambda call: True)
-def answerOnCand(call):
-    if call.message:
+def answerOnCand(callback):
+    if callback.message:
     
-        if call.data == "candYes":
+        if callback.data == "candYes":
             log_obj = {
-                'chat_id': call.message.chat.id,
-                'message_id': call.message.message_id,
-                'message': f'Utente {call.from_user["first_name"]} ha risposto SI alla candidatura',
-                'user': call.from_user["first_name"]
+                'chat_id': callback.message.chat.id,
+                'message_id': callback.message.message_id,
+                'message': f'Utente {callback.from_user["first_name"]} ha risposto SI alla candidatura',
+                'user': callback.from_user["first_name"]
             }
             #log_file_cand(log_obj)
-            bot.send_message(call.message.chat.id,'Candidatura inviata')
-        if call.data == "candNo":
+            bot.send_message(callback.message.chat.id,'Candidatura inviata')
+        if callback.data == "candNo":
             log_obj = {
-                'chat_id': call.message.chat.id,
-                'message_id': call.message.message_id,
-                'message': f'Utente {call.from_user["first_name"]} ha risposto NO alla candidatura',
-                'user': call.from_user["first_name"]
+                'chat_id': callback.message.chat.id,
+                'message_id': callback.message.message_id,
+                'message': f'Utente {callback.from_user["first_name"]} ha risposto NO alla candidatura',
+                'user': callback.from_user["first_name"]
             }
     
-            bot.send_message(call.message.chat.id,'Grazie per la partecipazione')
+            bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
         log_file_cand(log_obj)
             
 @bot.message_handler(commands=['start'])
