@@ -42,39 +42,51 @@ def private_access():
 def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     
-    candSi = types.InlineKeyboardButton(
-        'Si', callback_data='candYes')
-    candNo = types.InlineKeyboardButton(
-        'No', callback_data='candNo')
+    # candSi = types.InlineKeyboardButton(
+    #     'Si', callback_data='candYes')
+    # candNo = types.InlineKeyboardButton(
+    #     'No', callback_data='candNo')
 
-    markup.add(candSi,candNo)
-    bot.send_message(
-        msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a?', reply_markup=markup)
+    #markup.add(candSi,candNo)
+    sendCand = bot.send_message(
+        msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a? [S/N]', reply_markup=markup)
+    bot.register_next_step_handler(sendCand,sendCandFunc)
 
+def sendCandFunc(msg):
+    si = ['si','Si','Yes','y','s']
+    no = ['no','No','n']
 
-@bot.callback_query_handler(func=lambda call: True)
-def answerOnCand(callback):
-    if callback.message:
-        print("Dio cane")    
-        if callback.data == "candYes":
-            log_obj = {
-                'chat_id': callback.message.chat.id,
-                'message_id': callback.message.message_id,
-                'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto SI alla candidatura',
-                'user': str(callback.message.from_user.first_name)
-            }
-            #log_file_cand(log_obj)
-            bot.send_message(callback.message.chat.id,'Candidatura inviata')
-        if callback.data == "candNo":
-            log_obj = {
-                'chat_id': callback.message.chat.id,
-                'message_id': callback.message.message_id,
-                'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto NO alla candidatura',
-                'user': str(callback.message.from_user.username)
-            }
+    if msg.text in si:
+        bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua candidatura')
+    elif msg.text in no:
+        bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
+    else:
+        bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\n RIpeti il comando /cand")
+        
+
+# @bot.callback_query_handler(func=lambda call: True)
+# def answerOnCand(callback):
+#     if callback.message:
+#         print("Dio cane")    
+#         if callback.data == "candYes":
+#             log_obj = {
+#                 'chat_id': callback.message.chat.id,
+#                 'message_id': callback.message.message_id,
+#                 'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto SI alla candidatura',
+#                 'user': str(callback.message.from_user.first_name)
+#             }
+#             #log_file_cand(log_obj)
+#             bot.send_message(callback.message.chat.id,'Candidatura inviata')
+#         if callback.data == "candNo":
+#             log_obj = {
+#                 'chat_id': callback.message.chat.id,
+#                 'message_id': callback.message.message_id,
+#                 'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto NO alla candidatura',
+#                 'user': str(callback.message.from_user.username)
+#             }
     
-            bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
-        log_file_cand(log_obj)
+#             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
+#         log_file_cand(log_obj)
             
 @bot.message_handler(commands=['start'])
 def startMSG(message):
