@@ -66,8 +66,8 @@ def answerOnCand(call):
             log_obj = {
                 'chat_id': call.message.chat.id,
                 'message_id': call.message.message_id,
-                'message': f'Utente {call.data.split[1]} ha risposto SI alla candidatura',
-                'user': call.data.split[1]
+                'message': f'Utente {call.data.split("#")[1]} ha risposto SI alla candidatura',
+                'user': call.data.split("#")[1]
             }
             #log_file_cand(log_obj)
             bot.send_message(call.message.chat.id,'Candidatura inviata')
@@ -75,8 +75,8 @@ def answerOnCand(call):
             log_obj = {
                 'chat_id': call.message.chat.id,
                 'message_id': call.message.message_id,
-                'message': f'Utente {call.data.split[1]} ha risposto NO alla candidatura',
-                'user': call.data.split[1]
+                'message': f'Utente {call.data.split("#")[1]} ha risposto NO alla candidatura',
+                'user': call.data.split("#")[1]
             }
     
             bot.send_message(call.message.chat.id,'Grazie per la partecipazione')
