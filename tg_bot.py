@@ -40,19 +40,13 @@ def private_access():
 
 @bot.message_handler(commands=['cand'])
 def cand(msg):
-
-    cand = {
-        'candYes' : msg.from_user.username,
-        'candNo' : msg.from_user.username,
-    }
-
     markup = types.InlineKeyboardMarkup(row_width=2)
     
     candSi = types.InlineKeyboardButton(
         'Si', callback_data='candYes')
     candNo = types.InlineKeyboardButton(
         'No', callback_data='candNo')
-    msg.from_user.username
+
     markup.add(candSi,candNo)
     bot.send_message(
         msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a?', reply_markup=markup)
@@ -61,13 +55,13 @@ def cand(msg):
 @bot.callback_query_handler(func=lambda call: True)
 def answerOnCand(callback):
     if callback.message:
-    
+        print("Dio cane")    
         if callback.data == "candYes":
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': f'Utente {callback.from_user["first_name"]} ha risposto SI alla candidatura',
-                'user': callback.from_user["first_name"]
+                'message': 'Utente '+str(callback.from_user.first_name)+' ha risposto SI alla candidatura',
+                'user': str(callback.from_user.first_name)
             }
             #log_file_cand(log_obj)
             bot.send_message(callback.message.chat.id,'Candidatura inviata')
@@ -75,8 +69,8 @@ def answerOnCand(callback):
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': f'Utente {callback.from_user["first_name"]} ha risposto NO alla candidatura',
-                'user': callback.from_user["first_name"]
+                'message': 'Utente '+str(callback.from_user.first_name)+' ha risposto NO alla candidatura',
+                'user': str(callback.from_user.first_name)
             }
     
             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
