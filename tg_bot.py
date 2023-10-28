@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 from functools import wraps
-from logs import log_file, LOG_DIR
+from logs import log_file, LOG_DIR, log_file_cand
 from dotenv import load_dotenv
 import os
 
@@ -46,7 +46,7 @@ def cand(msg):
         'Si', callback_data='candYes')
     candNo = types.InlineKeyboardButton(
         'No', callback_data='candNo')
-
+    msg.from_user.username
     markup.add(candSi,candNo)
     bot.send_message(
         msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a?', reply_markup=markup)
@@ -56,8 +56,22 @@ def cand(msg):
 def answerOnCand(callback):
     if callback.message:
         if callback.data == "candYes":
+            log_obj = {
+                'chat_id': callback.message.chat.id,
+                'message_id': callback.message.message_id,
+                'message': f'Utente {callback.message.from_user.username} ha risposto SI alla candidatura',
+                'user': callback.message.from_user.username
+            }
+            log_file_cand(log_obj)
             bot.send_message(callback.message.chat.id,'Candidatura inviata')
         if callback.data == "candNo":
+            log_obj = {
+                'chat_id': callback.message.chat.id,
+                'message_id': callback.message.message_id,
+                'message': f'Utente {callback.message.from_user.username} ha risposto NO alla candidatura',
+                'user': callback.message.from_user.username
+            }
+            log_file_cand(log_obj)
             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
             
 @bot.message_handler(commands=['start'])
