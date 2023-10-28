@@ -64,23 +64,23 @@ def startMSG(message):
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
     log_file(log_obj)
 
-@bot.message_handler(commands=['cand'])
-def cand(msg):
-    markup = types.InlineKeyboardMarkup(row_width=2)
+#@bot.message_handler(commands=['cand'])
+#def cand(msg):
+#    markup = types.InlineKeyboardMarkup(row_width=2)
+#
+#    candSi = types.InlineKeyboardButton('Si',callback_data='candYES')
+#    candNo = types.InlineKeyboardButton('No',callback_data='candNO')
+#    markup.add(candSi,candNo)
+#
+#    bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
 
-    candSi = types.InlineKeyboardButton('Si',callback_data='candYES')
-    candNo = types.InlineKeyboardButton('No',callback_data='candNO')
-    markup.add(candSi,candNo)
-
-    bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
-
-@bot.callback_query_handler(func=lambda call: True)
-def answerOnCand(callback):
-    if callback.message:
-        if callback.data == 'candYES':
-            bot.send_message(callback.message.chat.id,'La tua candidatura è stata inviata')
-        if callback.datad == 'candNO':
-            bot.send_message(callback.message.chat.id,'Ti ringraziamo per la disponibilità')
+#@bot.callback_query_handler(func=lambda call: True)
+#def answerOnCand(callback):
+#    if callback.message:
+#        if callback.data == 'candYES':
+#            bot.send_message(callback.message.chat.id,'La tua candidatura è stata inviata')
+#        if callback.datad == 'candNO':
+#            bot.send_message(callback.message.chat.id,'Ti ringraziamo per la disponibilità')
 
 @bot.message_handler(commands=['msg'])
 @private_access()
