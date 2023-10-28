@@ -38,10 +38,10 @@ def private_access():
 
     return deco_restrict
 
-@bot.message_handler(commands=['cand'])
+@bot.message_handler(commands=['candidate'])
 def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
-
+    
     candSi = types.InlineKeyboardButton(
         'Si', callback_data='candYes')
     candNo = types.InlineKeyboardButton(
