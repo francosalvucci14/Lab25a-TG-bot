@@ -77,31 +77,11 @@ def sendCandFunc(msg):
     else:
         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
 
+@bot.message_handler(commands=['infoRes'])
+def infoRes(msg):
+    bot.send_message(msg.chat.id,"Stampo le info sull'essere resposabile del laboratorio")
 
-# @bot.callback_query_handler(func=lambda call: True)
-# def answerOnCand(callback):
-#     if callback.message:
-#         print("Dio cane")    
-#         if callback.data == "candYes":
-#             log_obj = {
-#                 'chat_id': callback.message.chat.id,
-#                 'message_id': callback.message.message_id,
-#                 'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto SI alla candidatura',
-#                 'user': str(callback.message.from_user.first_name)
-#             }
-#             #log_file_cand(log_obj)
-#             bot.send_message(callback.message.chat.id,'Candidatura inviata')
-#         if callback.data == "candNo":
-#             log_obj = {
-#                 'chat_id': callback.message.chat.id,
-#                 'message_id': callback.message.message_id,
-#                 'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto NO alla candidatura',
-#                 'user': str(callback.message.from_user.username)
-#             }
-    
-#             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
-#         log_file_cand(log_obj)
-            
+
 @bot.message_handler(commands=['start'])
 def startMSG(message):
     log_obj = {
@@ -113,6 +93,7 @@ def startMSG(message):
     }
 
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
+    bot.send_message(message.chat.id, 'Ciao, al momento sono aperte le candidature per i nuovi responsabili del laboratorio.\nSe ti interessa lancia i comandi /infoRes e /cand\n[Mi raccomando, leggi bene il messaggio ottenuto dal comando /infoRes, ci sono tutte le informazioni per quanto riguarda essere uno dei resposnabili del laboratorio :)]')
     log_file(log_obj)
 
 @bot.message_handler(commands=['msg'])
