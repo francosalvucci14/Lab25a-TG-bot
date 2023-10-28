@@ -43,9 +43,9 @@ def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     
     candSi = types.InlineKeyboardButton(
-        'Si', callback_data='candYes')
+        'Si', callback_data=f'[candYes,{msg.from_user.username}]')
     candNo = types.InlineKeyboardButton(
-        'No', callback_data='candNo')
+        'No', callback_data=f'[candNo,{msg.from_user.username}]')
     msg.from_user.username
     markup.add(candSi,candNo)
     bot.send_message(
@@ -55,20 +55,21 @@ def cand(msg):
 @bot.callback_query_handler(func=lambda call: True)
 def answerOnCand(callback):
     if callback.message:
-        if callback.data == "candYes":
+    
+        if callback.data[0] == "candYes":
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': f'Utente {callback.message.from_user.username} ha risposto SI alla candidatura',
+                'message': f'Utente {callback.data[1]} ha risposto SI alla candidatura',
                 'user': callback.message.from_user.username
             }
             #log_file_cand(log_obj)
             bot.send_message(callback.message.chat.id,'Candidatura inviata')
-        if callback.data == "candNo":
+        if callback.data[1] == "candNo":
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': f'Utente {callback.message.from_user.username} ha risposto NO alla candidatura',
+                'message': f'Utente {callback.data[1]} ha risposto NO alla candidatura',
                 'user': callback.message.from_user.username
             }
     
