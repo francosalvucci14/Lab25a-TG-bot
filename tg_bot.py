@@ -53,7 +53,7 @@ def cand(msg):
     bot.register_next_step_handler(sendCand,sendCandFunc)
 
 def sendCandFunc(msg):
-    si = ['si','Si','Yes','y','s']
+    si = ['si','Si','Yes','yes','y','s']
     no = ['no','No','n']
 
     if msg.text in si:
@@ -61,7 +61,7 @@ def sendCandFunc(msg):
             'chat_id': msg.chat.id,
             'message_id': msg.message_id,
             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla candidatura',
-            'user': str(msg.from_user.first_name)
+            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
         }
         log_file_cand(log_obj)
         bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua candidatura')
@@ -70,12 +70,12 @@ def sendCandFunc(msg):
             'chat_id': msg.chat.id,
             'message_id': msg.message_id,
             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla candidatura',
-            'user': str(msg.from_user.first_name)
+            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
         }
         log_file_cand(log_obj)
         bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
     else:
-        bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\n RIpeti il comando /cand")
+        bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
 
 
 # @bot.callback_query_handler(func=lambda call: True)
