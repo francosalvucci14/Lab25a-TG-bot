@@ -38,7 +38,7 @@ def private_access():
 
     return deco_restrict
 
-@bot.message_handler(commands=['candidate'])
+@bot.message_handler(commands=['cand'])
 def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     
@@ -72,24 +72,6 @@ def startMSG(message):
 
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
     log_file(log_obj)
-
-#@bot.message_handler(commands=['cand'])
-#def cand(msg):
-#    markup = types.InlineKeyboardMarkup(row_width=2)
-#
-#    candSi = types.InlineKeyboardButton('Si',callback_data='candYES')
-#    candNo = types.InlineKeyboardButton('No',callback_data='candNO')
-#    markup.add(candSi,candNo)
-#
-#    bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
-
-#@bot.callback_query_handler(func=lambda call: True)
-#def answerOnCand(callback):
-#    if callback.message:
-#        if callback.data == 'candYES':
-#            bot.send_message(callback.message.chat.id,'La tua candidatura è stata inviata')
-#        if callback.datad == 'candNO':
-#            bot.send_message(callback.message.chat.id,'Ti ringraziamo per la disponibilità')
 
 @bot.message_handler(commands=['msg'])
 @private_access()
@@ -178,7 +160,7 @@ def listCMD(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     bot.send_message(
         msg.chat.id, 'Ecco la lista dei comandi disponibili', reply_markup=markup)
-    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n')
+    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n\n - Comando /cand\n Questo comando ti permette di inviare la tua candidatura per il ruolo di responsabile')
 
 
 @bot.message_handler(commands=['help'])
