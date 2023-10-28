@@ -64,6 +64,23 @@ def startMSG(message):
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
     log_file(log_obj)
 
+@bot.message_handler(commands=['candidatura'])
+def cand(msg):
+    markup = types.InlineKeyboardMarkup(row_width=2)
+
+    candidaturaSi = types.InlineKeyboardButton('Si',callback_data='candYES')
+    candidaturaNo = types.InlineKeyboardButton('No',callback_data='candNO')
+    markup.add(candidaturaSi,candidaturaNo)
+
+    bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
+
+@bot.callback_query_handelr(func= lambda call: True)
+def answerOnCand(callback):
+    if callback.message:
+        if callback.data == 'candYES':
+            bot.send_message(callback.message.chat.id,'La tua candidatura è stata inviata')
+        if callback.datad == 'candNO':
+            bot.send_message(callback.message.chat.id,'Ti ringraziamo per la disponibilità')
 
 @bot.message_handler(commands=['msg'])
 @private_access()
