@@ -60,8 +60,8 @@ def answerOnCand(callback):
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': 'Utente '+str(callback.from_user.first_name)+' ha risposto SI alla candidatura',
-                'user': str(callback.from_user.first_name)
+                'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto SI alla candidatura',
+                'user': str(callback.message.from_user.first_name)
             }
             #log_file_cand(log_obj)
             bot.send_message(callback.message.chat.id,'Candidatura inviata')
@@ -69,8 +69,8 @@ def answerOnCand(callback):
             log_obj = {
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
-                'message': 'Utente '+str(callback.from_user.first_name)+' ha risposto NO alla candidatura',
-                'user': str(callback.from_user.first_name)
+                'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto NO alla candidatura',
+                'user': str(callback.message.from_user.first_name)
             }
     
             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
