@@ -70,7 +70,7 @@ def answerOnCand(callback):
                 'chat_id': callback.message.chat.id,
                 'message_id': callback.message.message_id,
                 'message': 'Utente '+str(callback.message.from_user.first_name)+' ha risposto NO alla candidatura',
-                'user': str(callback.message.from_user.first_name)
+                'user': str(callback.message.from_user.username)
             }
     
             bot.send_message(callback.message.chat.id,'Grazie per la partecipazione')
