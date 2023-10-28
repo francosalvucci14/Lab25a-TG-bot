@@ -74,7 +74,7 @@ def cand(msg):
 
     bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
 
-@bot.callback_query_handelr(func= lambda call: True)
+@bot.callback_query_handler(func=lambda call: True)
 def answerOnCand(callback):
     if callback.message:
         if callback.data == 'candYES':
