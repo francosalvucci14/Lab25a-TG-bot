@@ -40,12 +40,18 @@ def private_access():
 
 @bot.message_handler(commands=['cand'])
 def cand(msg):
+
+    cand = {
+        'candYes' : msg.from_user.username,
+        'candNo' : msg.from_user.username,
+    }
+
     markup = types.InlineKeyboardMarkup(row_width=2)
     
     candSi = types.InlineKeyboardButton(
-        'Si', callback_data=f'[candYes,{msg.from_user.username}]')
+        'Si', callback_data=cand[0][1])
     candNo = types.InlineKeyboardButton(
-        'No', callback_data=f'[candNo,{msg.from_user.username}]')
+        'No', callback_data=cand[1][1])
     msg.from_user.username
     markup.add(candSi,candNo)
     bot.send_message(
