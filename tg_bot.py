@@ -64,7 +64,7 @@ def startMSG(message):
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
     log_file(log_obj)
 
-@bot.message_handler(commands=['candidatura'])
+@bot.message_handler(commands=['cand'])
 def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
 
