@@ -38,6 +38,18 @@ def private_access():
 
     return deco_restrict
 
+@bot.message_handler(commands=['cand'])
+def cand(msg):
+    markup = types.InlineKeyboardMarkup(row_width=2)
+
+    candSi = types.InlineKeyboardButton(
+        'Si', callback_data='candYes')
+    candNo = types.InlineKeyboardButton(
+        'No', callback_data='candNo')
+
+    markup.add(candSi,candNo)
+    bot.send_message(
+        msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a?', reply_markup=markup)
 
 @bot.message_handler(commands=['start'])
 def startMSG(message):
