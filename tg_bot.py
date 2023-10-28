@@ -68,9 +68,9 @@ def startMSG(message):
 def cand(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
 
-    candidaturaSi = types.InlineKeyboardButton('Si',callback_data='candYES')
-    candidaturaNo = types.InlineKeyboardButton('No',callback_data='candNO')
-    markup.add(candidaturaSi,candidaturaNo)
+    candSi = types.InlineKeyboardButton('Si',callback_data='candYES')
+    candNo = types.InlineKeyboardButton('No',callback_data='candNO')
+    markup.add(candSi,candNo)
 
     bot.send_message(msg.chat.id,'Ti vuoi candidare al ruolo di responsabile del Laboratorio 25a?',reply_markup=markup)
 
