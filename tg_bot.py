@@ -62,7 +62,7 @@ def cand(msg):
 def answerOnCand(call):
     if call.message:
     
-        if call.data.split == "candYes":
+        if call.data == "candYes":
             log_obj = {
                 'chat_id': call.message.chat.id,
                 'message_id': call.message.message_id,
@@ -71,7 +71,7 @@ def answerOnCand(call):
             }
             #log_file_cand(log_obj)
             bot.send_message(call.message.chat.id,'Candidatura inviata')
-        if call.data.split == "candNo":
+        if call.data == "candNo":
             log_obj = {
                 'chat_id': call.message.chat.id,
                 'message_id': call.message.message_id,
