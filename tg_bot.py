@@ -79,7 +79,8 @@ def sendCandFunc(msg):
 
 @bot.message_handler(commands=['infores'])
 def infoRes(msg):
-    bot.send_message(msg.chat.id,"Stampo le info sull'essere resposabile del laboratorio")
+    bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi entrare a far parte dei responsabili del laboratorio 25a")
+    bot.send_poll(msg.chat.id,"Porcodio",["si","no"],False,None,False)
 
 
 @bot.message_handler(commands=['start'])
