@@ -54,7 +54,7 @@ def cand(msg):
 
 def sendCandFunc(msg):
     si = ['si','Si','Yes','yes','y','s']
-    no = ['no','No','n']
+    no = ['no','No','n','N']
 
     if msg.text in si:
         log_obj = {
@@ -77,7 +77,7 @@ def sendCandFunc(msg):
     else:
         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
 
-@bot.message_handler(commands=['infoRes'])
+@bot.message_handler(commands=['infores'])
 def infoRes(msg):
     bot.send_message(msg.chat.id,"Stampo le info sull'essere resposabile del laboratorio")
 
