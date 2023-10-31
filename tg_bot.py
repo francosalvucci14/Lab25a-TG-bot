@@ -96,7 +96,7 @@ def startMSG(message):
     }
 
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
-    bot.send_message(message.chat.id, 'Ciao, al momento sono aperte le candidature per i nuovi responsabili del laboratorio.\nSe ti interessa lancia i comandi /infores e /cand\n[Mi raccomando, leggi bene il messaggio ottenuto dal comando /infoRes, ci sono tutte le informazioni per quanto riguarda essere uno dei responsabili del laboratorio :)]')
+    bot.send_message(message.chat.id, 'Ciao, al momento sono aperte le candidature per i nuovi responsabili del laboratorio.\nSe ti interessa lancia i comandi /infores e /cand\n[Mi raccomando, leggi bene il messaggio ottenuto dal comando /infores, ci sono tutte le informazioni per quanto riguarda essere uno dei responsabili del laboratorio :)]')
     log_file(log_obj)
 
 @bot.message_handler(commands=['msg'])
