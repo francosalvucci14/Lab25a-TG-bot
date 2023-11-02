@@ -53,7 +53,7 @@ def cand(msg):
     bot.register_next_step_handler(sendCand,sendCandFunc)
 
 def sendCandFunc(msg):
-    si = ['si','Si','Yes','yes','y','s']
+    si = ['si','Si','Yes','yes','y','s','S']
     no = ['no','No','n','N']
 
     if msg.text in si:
