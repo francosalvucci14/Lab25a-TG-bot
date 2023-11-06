@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 from functools import wraps
-from logs import log_file, LOG_DIR, log_file_cand
+from logs import log_file, LOG_DIR
 from dotenv import load_dotenv
 import os
 
@@ -13,7 +13,7 @@ def is_known_username(username):
     '''
     Returns a boolean if the username is known in the user-list.
     '''
-    known_usernames = ['Acr0n1m0', 'davidenox','Levvonci', 'dadelaz', 'Spaadd']
+    known_usernames = ['Acr0n1m0', 'davidenox','Levvonci', 'Spaadd','CromoCon','alesandu','Compssss']
 
     return username in known_usernames
 
@@ -38,50 +38,51 @@ def private_access():
 
     return deco_restrict
 
-@bot.message_handler(commands=['cand'])
-def cand(msg):
-    markup = types.InlineKeyboardMarkup(row_width=2)
+# Comandi cand e infores disabilitati
+# @bot.message_handler(commands=['cand'])
+# def cand(msg):
+#     markup = types.InlineKeyboardMarkup(row_width=2)
     
-    # candSi = types.InlineKeyboardButton(
-    #     'Si', callback_data='candYes')
-    # candNo = types.InlineKeyboardButton(
-    #     'No', callback_data='candNo')
+#     # candSi = types.InlineKeyboardButton(
+#     #     'Si', callback_data='candYes')
+#     # candNo = types.InlineKeyboardButton(
+#     #     'No', callback_data='candNo')
 
-    #markup.add(candSi,candNo)
-    sendCand = bot.send_message(
-        msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a? [S/N]', reply_markup=markup)
-    bot.register_next_step_handler(sendCand,sendCandFunc)
+#     #markup.add(candSi,candNo)
+#     sendCand = bot.send_message(
+#         msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a? [S/N]', reply_markup=markup)
+#     bot.register_next_step_handler(sendCand,sendCandFunc)
 
-def sendCandFunc(msg):
-    si = ['si','Si','Yes','yes','y','s','S']
-    no = ['no','No','n','N']
+# def sendCandFunc(msg):
+#     si = ['si','Si','Yes','yes','y','s','S']
+#     no = ['no','No','n','N']
 
-    if msg.text in si:
-        log_obj = {
-            'chat_id': msg.chat.id,
-            'message_id': msg.message_id,
-            'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla candidatura',
-            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-        }
-        log_file_cand(log_obj)
-        bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua candidatura')
-    elif msg.text in no:
-        log_obj = {
-            'chat_id': msg.chat.id,
-            'message_id': msg.message_id,
-            'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla candidatura',
-            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-        }
-        log_file_cand(log_obj)
-        bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
-    else:
-        bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
+#     if msg.text in si:
+#         log_obj = {
+#             'chat_id': msg.chat.id,
+#             'message_id': msg.message_id,
+#             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla candidatura',
+#             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+#         }
+#         log_file_cand(log_obj)
+#         bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua candidatura')
+#     elif msg.text in no:
+#         log_obj = {
+#             'chat_id': msg.chat.id,
+#             'message_id': msg.message_id,
+#             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla candidatura',
+#             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+#         }
+#         log_file_cand(log_obj)
+#         bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
+#     else:
+#         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
 
-@bot.message_handler(commands=['infores'])
-def infoRes(msg):
-    bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi entrare a far parte dei responsabili del laboratorio 25a")
-    #bot.send_poll(msg.chat.id,"Test polling",["si","no"],False,None,False)
-    bot.send_message(msg.chat.id,"Essere responsabili del laboratorio significa che:\n- Avrai accesso alle chiavi del laboratorio, quindi potrai, e dovrai, andare in segreteria a prenderle\n- Potrai chiudere il laboratorio quando vuoi, basta che prima di farlo avvisi della chiusura e mandi via tutti\n- Se uno degli altri responsabili non c'è, non dovrai aspettare per l'apertura, sarai tu stesso ad aprire\n- Ricorda sempre di far rispettare le regole del laboratorio, e se vedi qualcuno che non fa informatica, CACCIALO\n⚠️⚠️⚠️ Occhio ad una cosa, se un giorno apri il laboratorio, e di conseguenza firmi, la responsabilità è TUA. Se succede qualcosa e sei l'unico responsabile presente, scusa il termine, so CAZZI TUA. Quindi presta bene attenzione⚠️⚠️⚠️.\nPer altre informazioni chiedi ai responsabili già presenti")
+# @bot.message_handler(commands=['infores'])
+# def infoRes(msg):
+#     bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi entrare a far parte dei responsabili del laboratorio 25a")
+#     #bot.send_poll(msg.chat.id,"Test polling",["si","no"],False,None,False)
+#     bot.send_message(msg.chat.id,"Essere responsabili del laboratorio significa che:\n- Avrai accesso alle chiavi del laboratorio, quindi potrai, e dovrai, andare in segreteria a prenderle\n- Potrai chiudere il laboratorio quando vuoi, basta che prima di farlo avvisi della chiusura e mandi via tutti\n- Se uno degli altri responsabili non c'è, non dovrai aspettare per l'apertura, sarai tu stesso ad aprire\n- Ricorda sempre di far rispettare le regole del laboratorio, e se vedi qualcuno che non fa informatica, CACCIALO\n⚠️⚠️⚠️ Occhio ad una cosa, se un giorno apri il laboratorio, e di conseguenza firmi, la responsabilità è TUA. Se succede qualcosa e sei l'unico responsabile presente, scusa il termine, so CAZZI TUA. Quindi presta bene attenzione⚠️⚠️⚠️.\nPer altre informazioni chiedi ai responsabili già presenti")
 
 
 
@@ -96,6 +97,7 @@ def startMSG(message):
     }
 
     bot.send_message(message.chat.id, 'Lab25a Bot Operativo')
+    bot.send_message(message.chat.id, 'Per iniziare ad utilizzare il bot lancia il comando /list')
    # bot.send_message(message.chat.id, 'Ciao, al momento sono aperte le candidature per i nuovi responsabili del laboratorio.\nSe ti interessa lancia i comandi /infores e /cand\n[Mi raccomando, leggi bene il messaggio ottenuto dal comando /infores, ci sono tutte le informazioni per quanto riguarda essere uno dei responsabili del laboratorio :)]')
     log_file(log_obj)
 
@@ -186,7 +188,7 @@ def listCMD(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     bot.send_message(
         msg.chat.id, 'Ecco la lista dei comandi disponibili', reply_markup=markup)
-    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n\n - Comando /cand\n Questo comando ti permette di inviare la tua candidatura per il ruolo di responsabile')
+    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro) - @Compssss (Francesco)\n\n')
 
 
 @bot.message_handler(commands=['help'])
@@ -201,9 +203,9 @@ def help(msg):
     log_file(log_obj)
     markup = types.InlineKeyboardMarkup(row_width=2)
     bot.send_message(
-        msg.chat.id, 'Per qualunque problema/richiesta chiedi a loro : \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)')
+        msg.chat.id, 'Per qualunque problema/richiesta chiedi a loro : \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro)\n - @Compssss (Francesco)\n')
     sendHelp = bot.send_message(
-        msg.chat.id, 'Per cosa chiedi assistenza?(per favore, scrivi il messaggio completo, e non piangere).\nRicorda di scrivere il nome del responsabile a cui vuoi richiedere assistenza, separato da "to";\nLe parole chiave dei resposabili sono:\n - to franco\n - to davide\n - to leonardo\n - to nicolò\n[es. Il bot non funziona to franco]', reply_markup=markup)
+        msg.chat.id, 'Per cosa chiedi assistenza?(per favore, scrivi il messaggio completo, e non piangere).\nRicorda di scrivere il nome del responsabile a cui vuoi richiedere assistenza, separato da "to";\nLe parole chiave dei resposabili sono:\n - to franco\n - to davide\n - to leonardo\n - to nicolò\n - to marius\n - to alessandro[es. Il bot non funziona to franco]', reply_markup=markup)
     bot.register_next_step_handler(sendHelp, sendHelpFunc)
 
 
@@ -232,6 +234,24 @@ def sendHelpFunc(msg):
         # -1001681659911 è l'ID di prova
         bot.send_message(-1001681659911,
                          f"Da LaBot, hai ricevuto una richiesta di assistenza : {split[0]}, da @{msg.from_user.username}. Richiesto l'intervento di Nicolò")
+        bot.send_message(
+            msg.chat.id, f'Ho comunicato il messaggio a {split[1]}')
+    elif 'to marius' in msg.text:
+        # -1001681659911 è l'ID di prova
+        bot.send_message(-1001681659911,
+                         f"Da LaBot, hai ricevuto una richiesta di assistenza : {split[0]}, da @{msg.from_user.username}. Richiesto l'intervento di Marius")
+        bot.send_message(
+            msg.chat.id, f'Ho comunicato il messaggio a {split[1]}')
+    elif 'to alessandro' in msg.text:
+        # -1001681659911 è l'ID di prova
+        bot.send_message(-1001681659911,
+                         f"Da LaBot, hai ricevuto una richiesta di assistenza : {split[0]}, da @{msg.from_user.username}. Richiesto l'intervento di Alessandro")
+        bot.send_message(
+            msg.chat.id, f'Ho comunicato il messaggio a {split[1]}')
+    elif 'to francesco' in msg.text:
+        # -1001681659911 è l'ID di prova
+        bot.send_message(-1001681659911,
+                         f"Da LaBot, hai ricevuto una richiesta di assistenza : {split[0]}, da @{msg.from_user.username}. Richiesto l'intervento di Francesco")
         bot.send_message(
             msg.chat.id, f'Ho comunicato il messaggio a {split[1]}')
     else:
