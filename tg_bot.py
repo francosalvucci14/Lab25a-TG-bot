@@ -141,14 +141,17 @@ def comunications(msg):
     log_file(log_obj)
     markup = types.InlineKeyboardMarkup(row_width=2)
     send = bot.send_message(
-        msg.chat.id, 'Cosa vuoi comunicare agli utenti?', reply_markup=markup)
+        msg.chat.id, 'Cosa vuoi comunicare agli utenti?[se hai sbagliato a lanciare il comando, scrivi NO]', reply_markup=markup)
     bot.register_next_step_handler(send, comm)
 
 
 def comm(msg):
+    if 'NO' in msg.text:
+        bot.send_message(msg.chat.id,'Invio annullato')
+    else:
     # -1001681659911 è l'ID di prova
-    bot.send_message(-1001921431467, msg.text)
-    bot.send_message(msg.chat.id, 'Ho comunicato il messaggio')
+        bot.send_message(-1001921431467, msg.text)
+        bot.send_message(msg.chat.id, 'Ho comunicato il messaggio')
 
 
 @bot.callback_query_handler(func=lambda call: True)
