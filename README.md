@@ -1,4 +1,4 @@
-![immagine](https://github.com/francosalvucci14/Lab25a-TG-bot/assets/120756925/0ae04024-de74-444c-a279-1e89118cf0ea&size=100)
+![immagine](https://github.com/francosalvucci14/Lab25a-TG-bot/assets/120756925/caf344b1-683d-497e-bc0f-85abf029768c)
 
 # Lab25a-TG-bot
 
