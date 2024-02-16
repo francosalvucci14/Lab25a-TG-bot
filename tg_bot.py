@@ -38,52 +38,51 @@ def private_access():
 
     return deco_restrict
 
-# Comandi cand e infores disabilitati
-# @bot.message_handler(commands=['cand'])
-# def cand(msg):
-#     markup = types.InlineKeyboardMarkup(row_width=2)
+# Comandi game e infogame 
+@bot.message_handler(commands=['game'])
+def game(msg):
+    markup = types.InlineKeyboardMarkup(row_width=2)
     
-#     # candSi = types.InlineKeyboardButton(
-#     #     'Si', callback_data='candYes')
-#     # candNo = types.InlineKeyboardButton(
-#     #     'No', callback_data='candNo')
+    gameSi = types.InlineKeyboardButton(
+        'Si', callback_data='gameYes')
+    gameNo = types.InlineKeyboardButton(
+        'No', callback_data='gameNo')
 
-#     #markup.add(candSi,candNo)
-#     sendCand = bot.send_message(
-#         msg.chat.id, 'Ti vuoi candidare per il ruolo di responsabile del Laboratorio 25a? [S/N]', reply_markup=markup)
-#     bot.register_next_step_handler(sendCand,sendCandFunc)
+     #markup.add(gameSi,gameNo)
+     sendGame = bot.send_message(
+         msg.chat.id, 'Vorresti partecipare nel torneo videogiochistico del Laboratorio 25a nei giorni 29/02-01/03 ? [S/N]', reply_markup=markup)
+     bot.register_next_step_handler(sendGame,sendGameFunc)
 
-# def sendCandFunc(msg):
-#     si = ['si','Si','Yes','yes','y','s','S']
-#     no = ['no','No','n','N']
+ def sendGameFunc(msg):
+     si = ['si','yes','y','s']
+     no = ['no','n']
 
-#     if msg.text in si:
-#         log_obj = {
-#             'chat_id': msg.chat.id,
-#             'message_id': msg.message_id,
-#             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla candidatura',
-#             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-#         }
-#         log_file_cand(log_obj)
-#         bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua candidatura')
-#     elif msg.text in no:
-#         log_obj = {
-#             'chat_id': msg.chat.id,
-#             'message_id': msg.message_id,
-#             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla candidatura',
-#             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-#         }
-#         log_file_cand(log_obj)
-#         bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
-#     else:
-#         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla candidatura.\nRipeti il comando /cand")
+     if msg.text.lower() in si:
+         log_obj = {
+             'chat_id': msg.chat.id,
+             'message_id': msg.message_id,
+             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla sua iscrizione',
+             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+         }
+         log_file_game(log_obj)
+         bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua iscrizione')
+     elif msg.text.lower() in no:
+         log_obj = {
+             'chat_id': msg.chat.id,
+             'message_id': msg.message_id,
+             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla sua iscrizione',
+             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+         }
+         log_file_game(log_obj)
+         bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
+     else:
+         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla tua iscrizione.\nRipeti il comando /game")
 
-# @bot.message_handler(commands=['infores'])
-# def infoRes(msg):
-#     bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi entrare a far parte dei responsabili del laboratorio 25a")
-#     #bot.send_poll(msg.chat.id,"Test polling",["si","no"],False,None,False)
-#     bot.send_message(msg.chat.id,"Essere responsabili del laboratorio significa che:\n- Avrai accesso alle chiavi del laboratorio, quindi potrai, e dovrai, andare in segreteria a prenderle\n- Potrai chiudere il laboratorio quando vuoi, basta che prima di farlo avvisi della chiusura e mandi via tutti\n- Se uno degli altri responsabili non c'è, non dovrai aspettare per l'apertura, sarai tu stesso ad aprire\n- Ricorda sempre di far rispettare le regole del laboratorio, e se vedi qualcuno che non fa informatica, CACCIALO\n⚠️⚠️⚠️ Occhio ad una cosa, se un giorno apri il laboratorio, e di conseguenza firmi, la responsabilità è TUA. Se succede qualcosa e sei l'unico responsabile presente, scusa il termine, so CAZZI TUA. Quindi presta bene attenzione⚠️⚠️⚠️.\nPer altre informazioni chiedi ai responsabili già presenti")
-
+@bot.message_handler(commands=['infogame'])
+def infoGame(msg):
+    bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi iscriverti e prendere parte al torneo videogiochistico del laboratorio 25a")
+    bot.send_poll(msg.chat.id,"Test polling",["si","no"],False,None,False)
+    bot.send_message(msg.chat.id,"Stiamo organizzando un torneo videogiochistico accessibile a qualsiasi studente di informatica. Lo scopo del torneo è quello di smorzare la tensione e lo stress post-sessione ma soprattutto quello di divertirsi e rafforzare i legami creati tra noi all'interno del nostro luogo comune.\n A breve uscirà una locandina e sarà possibile votare a dei sondaggi sul canale del laboratorio per esprimere le proprie preferenze su quali sono i giochi a cui vorresti partecipare tra quelli proposti.\n Il torneo è ad eliminazione diretta, la prima giornata sarà dedicata al gioco in singolo mentre la seconda giornata sarà dedicata al gioco di squadra con incontri 2v2, perciò è opportuno specificare nella candidatura se si vuole partecipare alla prima giornata, alla seconda o ad entrambe.\n Il costo simbolico del torneo è di 2 euro a persona, necessari per sostenere le spese a cui il laboratorio va incontro per la gestione dei servizi ed il mantenimento igienico delle varie postazioni più alcuni montepremi per competizione.\n A breve ci saranno novità, vi terremo aggiornati. Per ora studiate :)")
 
 
 @bot.message_handler(commands=['start'])
@@ -190,7 +189,7 @@ def listCMD(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     bot.send_message(
         msg.chat.id, 'Ecco la lista dei comandi disponibili', reply_markup=markup)
-    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro)\n - @Compssss (Francesco)\n')
+    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro)\n - @Compssss (Francesco)\n\n - Comando /game\n Questo comando ti permette di iscriverti al torneo videogiochistico organizzato dal lab25a')
 
 
 @bot.message_handler(commands=['help'])
