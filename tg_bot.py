@@ -38,7 +38,7 @@ def private_access():
 
     return deco_restrict
 
-# Comandi game e infogame 
+ 
 @bot.message_handler(commands=['game'])
 def game(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
@@ -49,34 +49,33 @@ def game(msg):
         'No', callback_data='gameNo')
 
      #markup.add(gameSi,gameNo)
-     sendGame = bot.send_message(
-         msg.chat.id, 'Vorresti partecipare nel torneo videogiochistico del Laboratorio 25a nei giorni 29/02-01/03 ? [S/N]', reply_markup=markup)
-     bot.register_next_step_handler(sendGame,sendGameFunc)
+    sendGame = bot.send_message(msg.chat.id, 'Vorresti partecipare nel torneo videogiochistico del Laboratorio 25a nei giorni 29/02-01/03 ? [S/N]', reply_markup=markup)
+    bot.register_next_step_handler(sendGame,sendGameFunc)
 
- def sendGameFunc(msg):
-     si = ['si','yes','y','s']
-     no = ['no','n']
+def sendGameFunc(msg):
+    si = ['si','yes','y','s']
+    no = ['no','n']
 
-     if msg.text.lower() in si:
-         log_obj = {
-             'chat_id': msg.chat.id,
-             'message_id': msg.message_id,
-             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla sua iscrizione',
-             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-         }
-         log_file_game(log_obj)
-         bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua iscrizione')
-     elif msg.text.lower() in no:
-         log_obj = {
-             'chat_id': msg.chat.id,
-             'message_id': msg.message_id,
-             'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla sua iscrizione',
-             'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
-         }
-         log_file_game(log_obj)
-         bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
-     else:
-         bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla tua iscrizione.\nRipeti il comando /game")
+    if msg.text.lower() in si:
+        log_obj = {
+            'chat_id': msg.chat.id,
+            'message_id': msg.message_id,
+            'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto SI alla sua iscrizione',
+            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+        }
+        log_file_game(log_obj)
+        bot.send_message(msg.chat.id,'Grazie, abbiamo ricevuto la tua iscrizione')
+    elif msg.text.lower() in no:
+        log_obj = {
+            'chat_id': msg.chat.id,
+            'message_id': msg.message_id,
+            'message': 'Utente '+str(msg.from_user.first_name)+' ha risposto NO alla sua iscrizione',
+            'user': f'{str(msg.from_user.first_name)}: [{msg.from_user.username}]'
+        }
+        log_file_game(log_obj)
+        bot.send_message(msg.chat.id,'Grazie per il tuo tempo')
+    else:
+        bot.send_message(msg.chat.id, "Attento! Non hai speficicato la tua risposta alla tua iscrizione.\nRipeti il comando /game")
 
 @bot.message_handler(commands=['infogame'])
 def infoGame(msg):
