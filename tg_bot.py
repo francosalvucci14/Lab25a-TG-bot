@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 from functools import wraps
-from logs import log_file, LOG_DIR
+from logs import log_file, LOG_DIR, log_file_game
 from dotenv import load_dotenv
 import os
 
