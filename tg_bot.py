@@ -80,7 +80,6 @@ def sendGameFunc(msg):
 @bot.message_handler(commands=['infogame'])
 def infoGame(msg):
     bot.send_message(msg.chat.id,"Ecco tutto quello che devi sapere se vuoi iscriverti e prendere parte al torneo videogiochistico del laboratorio 25a")
-    bot.send_poll(msg.chat.id,"Test polling",["si","no"],False,None,False)
     bot.send_message(msg.chat.id,"Stiamo organizzando un torneo videogiochistico accessibile a qualsiasi studente di informatica. Lo scopo del torneo è quello di smorzare la tensione e lo stress post-sessione ma soprattutto quello di divertirsi e rafforzare i legami creati tra noi all'interno del nostro luogo comune.\n A breve uscirà una locandina e sarà possibile votare a dei sondaggi sul canale del laboratorio per esprimere le proprie preferenze su quali sono i giochi a cui vorresti partecipare tra quelli proposti.\n Il torneo è ad eliminazione diretta, la prima giornata sarà dedicata al gioco in singolo mentre la seconda giornata sarà dedicata al gioco di squadra con incontri 2v2, perciò è opportuno specificare nella candidatura se si vuole partecipare alla prima giornata, alla seconda o ad entrambe.\n Il costo simbolico del torneo è di 2 euro a persona, necessari per sostenere le spese a cui il laboratorio va incontro per la gestione dei servizi ed il mantenimento igienico delle varie postazioni più alcuni montepremi per competizione.\n A breve ci saranno novità, vi terremo aggiornati. Per ora studiate :)")
 
 
