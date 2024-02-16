@@ -41,7 +41,7 @@ def log_file(
     with open(file_path, 'w') as f:
         json.dump(data, f, indent=2)
 
-def log_file_cand(
+def log_file_game(
     document: dict,
     log_dir: str = LOG_DIR
 ):
@@ -56,7 +56,7 @@ def log_file_cand(
         os.mkdir(log_dir)
 
     #today = datetime.today().strftime('%Y-%m-%d')
-    file_name = f'cand.json'
+    file_name = f'game.json'
 
     file_path = os.path.join(log_dir, file_name)
 
