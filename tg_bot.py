@@ -188,7 +188,7 @@ def listCMD(msg):
     markup = types.InlineKeyboardMarkup(row_width=2)
     bot.send_message(
         msg.chat.id, 'Ecco la lista dei comandi disponibili', reply_markup=markup)
-    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro)\n - @Compssss (Francesco)\n\n - Comando /game\n Questo comando ti permette di iscriverti al torneo videogiochistico organizzato dal lab25a')
+    bot.send_message(msg.chat.id, '- Comando /msg\n Questo comando permette di inviare un messaggio preimpostato al gruppo (Admin)\n\n - Comando /com\n Questo comando permette di inviare una comunicazione al gruppo (Admin)\n\n - Comando /list\n Genera questa lista\n\n - Comando /help\n Questo comando ti permette di richiedere assistenza, su qualunque topic, direttamente ai responsabili del laboratorio, che sono: \n - @Acr0nim0 (Franco)\n - @Levvonci (Leonardo)\n - @davidenox (Davide)\n - @Spaadd (Nicolò)\n - @CromoCon (Marius)\n - @alesandu (Alessandro)\n - @Compssss (Francesco)\n\n - Comando /game\n Questo comando ti permette di iscriverti al torneo videogiochistico organizzato dal lab25a\n\n - Comando /infogame\n Questo comando ti permette di ottenere informazioni aggiuntive riguardo il torneo videogiochistico organizzato dal lab25a')
 
 
 @bot.message_handler(commands=['help'])
